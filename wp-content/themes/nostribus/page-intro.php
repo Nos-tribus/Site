@@ -6,7 +6,21 @@
 $show_video = get_theme_mod('nos_tribus_show_intro_video', false);
 $video_mp4_id  = get_theme_mod('nos_tribus_intro_video_mp4', '');
 $video_webm_id = get_theme_mod('nos_tribus_intro_video_webm', '');
+$nos_tribus_intro_color = get_theme_mod('nos_tribus_intro_color', '');
+$dark_logo = get_theme_mod('dark_logo');
+?>
+<style>
+    body:has(.intro) {
+        background-color: <?= $nos_tribus_intro_color; ?>;
+    }
 
+    <?php if($dark_logo && get_text_color($nos_tribus_intro_color) == 'white') : ?>
+    .intro::after {
+        background-image: url('<?= $dark_logo; ?>');
+    }
+    <?php endif; ?>
+</style>
+<?php
 // Convertir l'ID en URL
 $video_mp4_url  = !empty($video_mp4_id) ? wp_get_attachment_url($video_mp4_id) : '';
 $video_webm_url = !empty($video_webm_id) ? wp_get_attachment_url($video_webm_id) : '';

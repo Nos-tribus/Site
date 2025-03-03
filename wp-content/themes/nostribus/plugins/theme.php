@@ -136,54 +136,21 @@ add_action('wp_enqueue_scripts', function () {
 
 
 
-
-function mytheme_customize_register($wp_customize) {
-    // Add Footer Section
-    $wp_customize->add_section('footer_section', array(
-        'title'    => __('Footer', 'mytheme'),
-        'priority' => 130,
+function customizer_add_dark_logo( $wp_customize ) {
+    $wp_customize->add_section( 'custom_logo_section', array(
+        'title'    => __( 'Logo alternatif', 'textdomain' ),
+        'priority' => 30,
     ));
 
-    // Add Footer Text Setting
-    $wp_customize->add_setting('footer_text', array(
+    $wp_customize->add_setting( 'dark_logo', array(
         'default'   => '',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'wp_kses_post',
+        'transport' => 'refresh',
     ));
 
-    // Add Custom Control for TinyMCE
-    class WP_Customize_TinyMCE_Control extends WP_Customize_Control {
-        public $type = 'tinymce';
-
-        public function render_content() {
-            ?>
-            <label>
-                <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
-                <?php
-                $editor_id = 'footer_text_editor';
-                $settings = array(
-                    'textarea_name' => $this->id,
-                    'textarea_rows' => 5,
-                    'editor_class'  => 'customizer-tinymce',
-                    'media_buttons' => true,
-                    'quicktags'     => true,
-                    'tinymce'       => array(
-                        'toolbar1' => 'bold italic underline | bullist numlist | link unlink | alignleft aligncenter alignright',
-                    ),
-                );
-                wp_editor($this->value(), $editor_id, $settings);
-                ?>
-                <input type="hidden" <?php $this->link(); ?> value="<?php echo esc_textarea($this->value()); ?>" class="customizer-tinymce-hidden">
-            </label>
-            <?php
-        }
-    }
-
-    // Add the TinyMCE Editor Control
-    $wp_customize->add_control(new WP_Customize_TinyMCE_Control($wp_customize, 'footer_text', array(
-        'label'    => __('Footer Content', 'mytheme'),
-        'section'  => 'footer_section',
-        'settings' => 'footer_text',
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'dark_logo', array(
+        'label'    => __( 'Logo pour fond noir', 'textdomain' ),
+        'section'  => 'custom_logo_section',
+        'settings' => 'dark_logo',
     )));
 }
-add_action('customize_register', 'mytheme_customize_register');
+add_action( 'customize_register', 'customizer_add_dark_logo' );
