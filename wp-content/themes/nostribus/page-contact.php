@@ -31,7 +31,7 @@
             <div class="deux-colonnes" data-type="component">
                 <div>
                     <figure>
-                        <img src="<?= get_field('image_de_fond') ?? ''; ?>" style="aspect-ratio:800/113" alt="Contact">
+                        <img src="<?= get_field('image_de_fond') ?? ''; ?>" _style="aspect-ratio:800/113" alt="Contact">
                     </figure>
 
                     <div class="contact-info">

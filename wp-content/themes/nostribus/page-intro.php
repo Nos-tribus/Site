@@ -14,10 +14,10 @@ $dark_logo = get_theme_mod('dark_logo');
         background-color: <?= $nos_tribus_intro_color; ?>;
     }
 
-    <?php if($dark_logo && get_text_color($nos_tribus_intro_color) == 'white') : ?>
-    .intro::after {
+    <?php if ($dark_logo && get_text_color($nos_tribus_intro_color) == 'white') : ?>.intro::after {
         background-image: url('<?= $dark_logo; ?>');
     }
+
     <?php endif; ?>
 </style>
 <?php
@@ -33,7 +33,10 @@ if ($show_video && (!empty($video_mp4_url) || !empty($video_webm_url))) : ?>
             </div>
         </div>
         <div class="video">
-            <video autoplay muted playsinline>
+            <svg data-svg="play" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 75.2 94.9" width="16" height="16" fill="#ffffff">
+                <path d="M71.8 41.1 12 1.3C6.9-2.1 0 1.6 0 7.7v79.5c0 6.2 6.9 9.8 12 6.4l59.8-39.8c4.5-2.9 4.5-9.7 0-12.7z"></path>
+            </svg>
+            <video>
                 <?php if (!empty($video_mp4_url)) : ?>
                     <source src="<?php echo esc_url($video_mp4_url); ?>" type="video/mp4">
                 <?php endif; ?>

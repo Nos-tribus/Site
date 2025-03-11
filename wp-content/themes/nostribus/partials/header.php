@@ -9,7 +9,9 @@
             </svg>
         </button></div>
     <?php get_template_part('partials/menu'); ?>
-    <div class="ctas">
-        <a class="bouton" href="/intro">Revoir la vidéo</a>
-    </div>
+    <?php if (get_theme_mod('nos_tribus_show_intro_video', false)) { ?>
+        <div class="ctas">
+            <a class="bouton" href="/intro">Revoir la vidéo</a>
+        </div>
+    <?php } ?>
 </header>
